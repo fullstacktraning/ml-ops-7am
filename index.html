@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ML Integration</title>
+    </head>
+    <body>
+        <fieldset>
+            <legend>HOUSE PRICE PREDICTION</legend>
+            <input type="number" id="size" placeholder="enter SQFT">
+            <br><br>
+            <input type="number" id="bedrooms" placeholder="enter number of bedrooms">
+            <br><br>
+            <input type="number" id="age" placeholder="enter house age">
+            <br><br>
+            <button onclick="predict()">Predict Price</button>
+            <br><br>
+            <h1 id="res"></h1>
+        </fieldset>
+        <script>
+            async function predict(){
+                let size = document.getElementById("size").value;
+                let bedrooms = document.getElementById("bedrooms").value;
+                let age = document.getElementById("age").value;
+
+                let res = await fetch("http://127.0.0.1:8000/predict",{
+                    method : "POST",
+                    headers:{
+                        "Content-Type" : "application/json"
+                    },
+                    body:JSON.stringify({
+                        size:parseFloat(size),
+                        bedrooms:parseInt(bedrooms),
+                        age:parseInt(age)
+                    })
+                })
+
+                let data = await res.json()
+                document.getElementById("res").innerHTML = data.predicted_price
+
+            }
+        </script>
+    </body>
+</html>
