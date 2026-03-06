@@ -50,5 +50,8 @@ MLOps
 
 8) create Dockerfile
 
-9) push code to GitHub          
-        
+9) push code to GitHub  
+        https://github.com/fullstacktraning/ml-ops-7am.git
+
+10) prepare Pipeline
+        Jenkinsfile        
